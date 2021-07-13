@@ -1,0 +1,6 @@
+a = 894 - 7;
+a = "text";
+
+function someName(arg) {
+    if(arg < 0) arg = 0;
+}
