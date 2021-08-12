@@ -7,6 +7,7 @@
 class Eater {
     public:
     
+    int line;
     const char *string;
     const char *c;
     
@@ -18,6 +19,7 @@ class Eater {
     
     void trimWN() {
         while(*c == ' ' || *c == '\n') {
+            if(*c == '\n') line++;
             c++;
         }
     }
@@ -25,6 +27,7 @@ class Eater {
     bool eatW(char e) {
         trimW();
         if(*c == e) {
+            if(e == '\n') line++;
             c++;
             return true;
         }
@@ -34,6 +37,7 @@ class Eater {
     bool eatWN(char e) {
         trimWN();
         if(*c == e) {
+            if(*c == '\n') line++;
             c++;
             return true;
         }
@@ -43,11 +47,13 @@ class Eater {
     
     bool isW(char e) {
         trimW();
+        if(*c == '\n') line++;
         return (*c == e);
     }
     
     bool isWN(char e) {
         trimWN();
+        if(*c == '\n') line++;
         return (*c == e);
     }
 };

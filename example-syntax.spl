@@ -1,34 +1,34 @@
-INTEGER = {[0-9]+}
-FLOAT = {[0-9]*\\.[0-9]+}
-STRING = {"(\\\\"|[^"])+"}
-BOOLEAN = {(true|false)}
+INTEGER = {[0-9]+};
+FLOAT = {[0-9]*\\.[0-9]+};
+STRING = {"(\\\\"|[^"])+"};
+BOOLEAN = {(true|false)};
 
-PARENTHESIS = ( '(' VALUE ')' )
-LITERAL = ( INTEGER | FLOAT | STRING | BOOLEAN )
-VARIABLE = IDENTIFIER
-CALL = IDENTIFIER '(' VALUE+ ')'
-ARRAY = ( '[' VALUE [ ',' VALUE ] ']' )
-OBJECT = ( '{' IDENTIFIER ':' VALUE [ ',' IDENTIFIER ':' VALUE ] '}' )
-FACTOR = ( PARENTHESIS | LITERAL | VARIABLE | CALL | ARRAY | OBJECT )
+PARENTHESIS = ( '(' VALUE ')' );
+LITERAL = ( INTEGER | FLOAT | STRING | BOOLEAN );
+VARIABLE = IDENTIFIER;
+CALL = ( IDENTIFIER '(' VALUE+ ')' );
+ARRAY = ( '[' VALUE [ ',' VALUE ] ']' );
+OBJECT = ( '{' IDENTIFIER ':' VALUE [ ',' IDENTIFIER ':' VALUE ] '}' );
+FACTOR = ( PARENTHESIS | LITERAL | VARIABLE | CALL | ARRAY | OBJECT );
 
-ADDITION = ( FACTOR [ '+' FACTOR ]+ )
-SUBTRACTION = ( ADDITION [ '-' ADDITION ]+ )
-MULTIPLCIATION = ( SUBTRACTION [ '*' SUBTRACTION ]+ )
-DIVISION = ( MULTIPLCIATION [ '/' MULTIPLCIATION ]+ )
+ADDITION = ( FACTOR [ '+' FACTOR ]+ );
+SUBTRACTION = ( ADDITION [ '-' ADDITION ]+ );
+MULTIPLCIATION = ( SUBTRACTION [ '*' SUBTRACTION ]+ );
+DIVISION = ( MULTIPLCIATION [ '/' MULTIPLCIATION ]+ );
 
-COMPARISON = ( DIVISION [ ( '==' | '>=' | '<=' | '!=' | '<' | '>' ) DIVISION ]+ )
-CONDITION = ( COMPARISON [ ( '&&' | '||' ) COMPARISON ]+ )
+COMPARISON = ( DIVISION [ ( '==' | '>=' | '<=' | '!=' | '<' | '>' ) DIVISION ]+ );
+CONDITION = ( COMPARISON [ ( '&&' | '||' ) COMPARISON ]+ );
 
 
 
-VALUE = CONDITION
+VALUE = CONDITION;
 
-ASSIGNMENT = ( IDENTIFIER '=' VALUE )
-FUNCTION = ( 'function' IDENTIFIER '(' IDENTIFIER+ ')' '{' BLOCK '}' )
-IF = ( 'if' '(' VALUE ')' BLOCK [ 'else' BLOCK ] )
-WHILE = ( 'while' '(' VALUE ')' BLOCK )
-FOR = ( 'for' '(' ?BLOCK ';' ?VALUE ';' ?BLOCK ')' BLOCK )
+ASSIGNMENT = ( IDENTIFIER '=' VALUE );
+FUNCTION = ( 'function' IDENTIFIER '(' IDENTIFIER+ ')' '{' BLOCK '}' );
+IF = ( 'if' '(' VALUE ')' BLOCK [ 'else' BLOCK ] );
+WHILE = ( 'while' '(' VALUE ')' BLOCK );
+FOR = ( 'for' '(' [ BLOCK ] ';' [ VALUE ] ';' [ BLOCK ] ')' BLOCK );
 
-STATEMENT = ( VALUE | ASSIGNMENT | FUNCTION | IF | WHILE | FOR )
+STATEMENT = ( VALUE | ASSIGNMENT | FUNCTION | IF | WHILE | FOR );
 
-BLOCK = ( STATEMENT | ( '{' [ STATEMENT+ ] '}' ) )
+BLOCK = ( STATEMENT | ( '{' [ STATEMENT+ ] '}' ) );
